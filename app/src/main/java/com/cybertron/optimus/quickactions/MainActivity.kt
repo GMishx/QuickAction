@@ -1,14 +1,11 @@
 package com.cybertron.optimus.quickactions
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
+import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.widget.Toast
-import android.content.Intent
-import android.os.SystemClock
-
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,15 +24,15 @@ class MainActivity : AppCompatActivity() {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
             Toast.makeText(this, "Next song", Toast.LENGTH_SHORT).show()
             mediaAction(KeyEvent.KEYCODE_MEDIA_NEXT)
-            upShortPress = false;
-            upLongPress = true;
-            return true;
+            upShortPress = false
+            upLongPress = true
+            return true
         } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             Toast.makeText(this, "Previous song", Toast.LENGTH_SHORT).show()
             mediaAction(KeyEvent.KEYCODE_MEDIA_PREVIOUS)
-            dwnShortPress = false;
-            dwnLongPress = true;
-            return true;
+            dwnShortPress = false
+            dwnLongPress = true
+            return true
         }
         return super.onKeyLongPress(keyCode, event)
     }
@@ -60,13 +57,14 @@ class MainActivity : AppCompatActivity() {
             }
             return true
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown(keyCode, event)
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?):Boolean {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
             event?.startTracking()
             if (upShortPress) {
+                Toast.makeText(this, "Volume up", Toast.LENGTH_SHORT).show()
                 mediaAction(KeyEvent.KEYCODE_VOLUME_UP)
             }
             upShortPress = true
@@ -75,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             event?.startTracking()
             if (dwnShortPress) {
+                Toast.makeText(this, "Volume down", Toast.LENGTH_SHORT).show()
                 mediaAction(KeyEvent.KEYCODE_VOLUME_DOWN)
             }
             dwnShortPress = true
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             return true
         }
 
-        return super.onKeyUp(keyCode, event);
+        return super.onKeyUp(keyCode, event)
     }
 
     fun mediaAction(key: Int) {
